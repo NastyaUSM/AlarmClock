@@ -16,9 +16,8 @@ namespace AlarmClock
             CurrentTime.Text = getTime();
             CurrentTimeTimer.Start();
 
-            MusicFileName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\alarm2.mp3";
-
             AlarmClockLabel.Text = "";
+            MusicFileName = @"http://www.cooperfulleon.com/sites/cooperfulleon.com/files/sounder_tones/standard/cooper_fulleon_sounder_tone_15.wav";
         }
 
         private void MusicDownloader_Click(object sender, EventArgs e)
@@ -32,6 +31,7 @@ namespace AlarmClock
                 string musicFileName = dialog.SafeFileName;
                 MusicFileName = dialog.FileName;
                 MusicFilePath.Text = musicFileName;
+                WarningLabel.Text = "Вы успешно добавили музыку для будильника!";
             }
         }
 
@@ -85,9 +85,12 @@ namespace AlarmClock
         {
             if(CurrentTime.Text == AlarmClockLabel.Text)
             {
-                System.Media.SoundPlayer myPlayer = new System.Media.SoundPlayer();
-                myPlayer.SoundLocation = MusicFileName;
-                myPlayer.Play();
+                if (MusicFileName !=null && MusicFileName.Length > 0)
+                {
+                    System.Media.SoundPlayer myPlayer = new System.Media.SoundPlayer();
+                    myPlayer.SoundLocation = MusicFileName;
+                    myPlayer.Play();
+                }
             }
         }
 
