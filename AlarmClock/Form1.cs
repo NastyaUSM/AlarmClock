@@ -31,7 +31,6 @@ namespace AlarmClock
                 string musicFileName = dialog.SafeFileName;
                 MusicFileName = dialog.FileName;
                 MusicFilePath.Text = musicFileName;
-                WarningLabel.Text = "Вы успешно добавили музыку для будильника!";
             }
         }
 
